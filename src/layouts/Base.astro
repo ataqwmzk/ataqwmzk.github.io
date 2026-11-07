@@ -17,7 +17,6 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <script is:inline>document.documentElement.classList.add('js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -45,36 +44,49 @@ const {
       <div class="wrap">© ata_あた</div>
     </footer>
     <script>
-      const targets = document.querySelectorAll(
-        'main section > :not(.body):not(.post-list):not(.buttons), main .body > *, main .post-list li, main .buttons a'
+      const targets = Array.from(
+        document.querySelectorAll(
+          'main section > :not(.body):not(.post-list):not(.buttons), main .body > *, main .post-list li, main .buttons a'
+        )
       );
-      targets.forEach((el) => {
-        el.classList.add('reveal');
-        const index = Array.from(el.parentElement.children).indexOf(el);
-        el.style.setProperty('--d', `${Math.min(index, 5) * 90}ms`);
-      });
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            entry.target.classList.toggle('is-visible', entry.isIntersecting);
-          });
-        },
-        { threshold: 0.1, rootMargin: '-8% 0px -12% 0px' }
-      );
-      targets.forEach((el) => observer.observe(el));
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const clamp = (v) => Math.min(1, Math.max(0, v));
+      let ticking = false;
 
-      let lastY = window.scrollY;
-      window.addEventListener(
-        'scroll',
-        () => {
-          const y = window.scrollY;
-          if (Math.abs(y - lastY) > 2) {
-            document.documentElement.classList.toggle('up', y < lastY);
-            lastY = y;
+      function update() {
+        ticking = false;
+        const vh = window.innerHeight;
+        const y = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - vh;
+        targets.forEach((el) => {
+          const top = el.getBoundingClientRect().top;
+          const reachable = top + y - maxScroll;
+          const fullAt = Math.max(vh * 0.72, reachable + 12);
+          const raw = clamp((vh - top) / Math.max(vh - fullAt, 1));
+          const p = raw * raw * (3 - 2 * raw);
+          if (p >= 0.999) {
+            el.style.opacity = '';
+            el.style.transform = '';
+          } else {
+            el.style.opacity = p.toFixed(3);
+            el.style.transform = `translateY(${((1 - p) * 28).toFixed(1)}px)`;
           }
-        },
-        { passive: true }
-      );
+        });
+      }
+
+      function request() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }
+
+      if (!reduce) {
+        update();
+        window.addEventListener('scroll', request, { passive: true });
+        window.addEventListener('resize', request);
+        window.addEventListener('load', request);
+      }
     </script>
   </body>
 </html>
@@ -253,28 +265,10 @@ const {
     margin-top: 16px;
   }
 
-  .js .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .js.up .reveal:not(.is-visible) {
-    transform: translateY(-32px);
-  }
-
-  .js .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-    transition-delay: var(--d, 0ms);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .js .reveal,
-    .js.up .reveal:not(.is-visible) {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
+  main section > *,
+  main .body > *,
+  main .post-list li,
+  main .buttons a {
+    will-change: opacity, transform;
   }
 </style>
