@@ -12,7 +12,7 @@ const { Content } = await render(post);
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
 ---
 
-<Base title={`${post.data.title} | [ハンドルネーム]`} description={post.data.title}>
+<Base title={`${post.data.title} | ata_あた`} description={post.data.title}>
   <article class="article">
     <p class="meta">{fmt(post.data.date)} · {post.data.tag}</p>
     <h1>{post.data.title}</h1>
