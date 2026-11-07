@@ -59,9 +59,22 @@ const {
             entry.target.classList.toggle('is-visible', entry.isIntersecting);
           });
         },
-        { threshold: 0.1, rootMargin: '0px 0px -12% 0px' }
+        { threshold: 0.1, rootMargin: '-8% 0px -12% 0px' }
       );
       targets.forEach((el) => observer.observe(el));
+
+      let lastY = window.scrollY;
+      window.addEventListener(
+        'scroll',
+        () => {
+          const y = window.scrollY;
+          if (Math.abs(y - lastY) > 2) {
+            document.documentElement.classList.toggle('up', y < lastY);
+            lastY = y;
+          }
+        },
+        { passive: true }
+      );
     </script>
   </body>
 </html>
@@ -246,6 +259,10 @@ const {
     transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
+  .js.up .reveal:not(.is-visible) {
+    transform: translateY(-32px);
+  }
+
   .js .reveal.is-visible {
     opacity: 1;
     transform: none;
@@ -253,7 +270,8 @@ const {
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .js .reveal {
+    .js .reveal,
+    .js.up .reveal:not(.is-visible) {
       opacity: 1;
       transform: none;
       transition: none;
