@@ -56,7 +56,10 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
         <li>
           <a href={`/blog/${post.id}/`}>
             <span class="date">{fmt(post.data.date)}</span>
-            <span class="title">{post.data.title}</span>
+            <span class="title">
+              <span class="t">{post.data.title}</span>
+              {post.data.summary && <span class="summary">{post.data.summary}</span>}
+            </span>
             <span class="tag">{post.data.tag}</span>
           </a>
         </li>
