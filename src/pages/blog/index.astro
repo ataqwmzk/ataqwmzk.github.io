@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const own = posts.filter((post) => post.data.author === 'self');
+const ai = posts.filter((post) => post.data.author === 'ai');
 
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
 ---
@@ -12,9 +14,9 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
   <section class="block">
     <div class="line" aria-hidden="true"></div>
     <h2>Blog</h2>
-    <p class="sub">雑記・知識の共有</p>
+    <p class="sub">自分で書いた記事</p>
     <ul class="post-list" style="margin-top: 32px">
-      {posts.map((post) => (
+      {own.map((post) => (
         <li>
           <a href={`/blog/${post.id}/`}>
             <span class="date">{fmt(post.data.date)}</span>
@@ -28,6 +30,28 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
       ))}
     </ul>
   </section>
+
+  {ai.length > 0 && (
+    <section id="ai" class="block">
+      <div class="line" aria-hidden="true"></div>
+      <h2>AI Notes</h2>
+      <p class="sub">Claude（AI）が調べてまとめた記事</p>
+      <ul class="post-list" style="margin-top: 32px">
+        {ai.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`}>
+              <span class="date">{fmt(post.data.date)}</span>
+              <span class="title">
+                <span class="t">{post.data.title}</span>
+                {post.data.summary && <span class="summary">{post.data.summary}</span>}
+              </span>
+              <span class="tag"><span class="badge">AI作成</span>{post.data.tag}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 </Base>
 
 <style>

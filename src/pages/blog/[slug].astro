@@ -9,14 +9,21 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const isAi = post.data.author === 'ai';
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
 ---
 
 <Base title={`${post.data.title} | ata_あた`} description={post.data.summary ?? post.data.title}>
   <article class="article">
-    <p class="meta">{fmt(post.data.date)} · {post.data.tag}</p>
+    <p class="meta">{fmt(post.data.date)} · {post.data.tag}{isAi && ' · AI作成'}</p>
     <h1>{post.data.title}</h1>
     {post.data.summary && <p class="summary">{post.data.summary}</p>}
+    {isAi && (
+      <aside class="ai-note">
+        <span class="badge">AI作成</span>
+        <p>この記事は、Claude（AI）が調べてまとめたものです。内容が古かったり、間違っていたりすることがあるので、大事なことは元の情報も確認してください。</p>
+      </aside>
+    )}
     <div class="prose">
       <Content />
     </div>
@@ -46,6 +53,19 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
   .summary {
     margin-top: 16px;
     color: var(--muted);
+  }
+
+  .ai-note {
+    margin-top: 28px;
+    padding: 16px 20px;
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    background: #f5f8ff;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
   }
 
   .prose {
