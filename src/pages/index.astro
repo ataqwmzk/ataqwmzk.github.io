@@ -1,0 +1,171 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const latest = posts.slice(0, 3);
+
+const showWorks = false;
+
+const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
+---
+
+<Base>
+  <section class="hero">
+    <p class="eyebrow">PORTFOLIO &amp; BLOG</p>
+    <h1>[ハンドルネーム]</h1>
+    <p class="lead">[ひとことで自己紹介。例：アプリとデザインと動画をつくっています。]</p>
+    <ul class="chips">
+      <li>iOSアプリ</li>
+      <li>グラフィックデザイン</li>
+      <li>動画編集</li>
+    </ul>
+  </section>
+
+  <section id="about" class="block about">
+    <div class="head">
+      <div class="line" aria-hidden="true"></div>
+      <h2>About</h2>
+      <p class="sub">自己紹介</p>
+    </div>
+    <div class="body">
+      <p>[ここに自己紹介文。何をつくっているか、何に興味があるか、これから挑戦したいことなどを2〜3文で。]</p>
+      <p class="muted">[好きなこと・使っているツールなど。例：Swift / Figma / 動画編集ソフト]</p>
+    </div>
+  </section>
+
+  {showWorks && (
+    <section id="works" class="block">
+      <div class="line" aria-hidden="true"></div>
+      <h2>Works</h2>
+      <p class="sub">作品</p>
+    </section>
+  )}
+
+  <section id="blog" class="block">
+    <div class="line" aria-hidden="true"></div>
+    <div class="head-row">
+      <div>
+        <h2>Blog</h2>
+        <p class="sub">雑記・知識の共有</p>
+      </div>
+      <a class="more" href="/blog/">すべての記事 →</a>
+    </div>
+    <ul class="post-list">
+      {latest.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}/`}>
+            <span class="date">{fmt(post.data.date)}</span>
+            <span class="title">{post.data.title}</span>
+            <span class="tag">{post.data.tag}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section id="links" class="block">
+    <div class="line" aria-hidden="true"></div>
+    <h2>Links</h2>
+    <p class="sub">SNS・リンク</p>
+    <div class="buttons">
+      <a href="#">X</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="https://github.com/ataqwmzk">GitHub</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 112px 0 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    font-size: 56px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .lead {
+    font-size: 20px;
+    color: #3a3a3a;
+    max-width: 560px;
+  }
+
+  .chips {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chips li {
+    font-size: 13px;
+    padding: 6px 14px;
+    border: 1px solid var(--chip);
+    border-radius: 999px;
+    color: #3a3a3a;
+  }
+
+  .about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 64px;
+  }
+
+  .about .head {
+    flex: 1 1 200px;
+  }
+
+  .about .body {
+    flex: 999 1 480px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .head-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .buttons a {
+    padding: 12px 22px;
+    border: 1px solid var(--chip);
+    border-radius: 999px;
+    font-size: 14px;
+  }
+
+  .buttons a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+</style>

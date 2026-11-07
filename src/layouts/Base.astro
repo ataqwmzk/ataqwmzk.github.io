@@ -1,0 +1,222 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = '[ハンドルネーム]',
+  description = '自己紹介・作品・ブログ',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap bar">
+        <a href="/" class="name">[ハンドルネーム]<span class="dot">.</span></a>
+        <nav aria-label="メインメニュー">
+          <a href="/#about">About</a>
+          <a href="/blog/">Blog</a>
+          <a href="/#links">Links</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">© [ハンドルネーム]</div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --text: #1a1a1a;
+    --muted: #5f5f5f;
+    --border: #ebebeb;
+    --chip: #d6d6d6;
+    --accent: #2f5bd3;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: var(--text);
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--muted);
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .site-header {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 32px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .name {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .dot {
+    color: var(--accent);
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 28px;
+    font-size: 15px;
+  }
+
+  nav a {
+    padding: 10px 0;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+  }
+
+  .site-footer .wrap {
+    padding-top: 28px;
+    padding-bottom: 28px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .line {
+    width: 28px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .sub {
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .block {
+    padding: 72px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .block h2 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .muted {
+    color: var(--muted);
+  }
+
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .post-list li {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .post-list a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 24px;
+    padding: 20px 0;
+  }
+
+  .post-list a:hover .title {
+    color: var(--accent);
+  }
+
+  .post-list .date {
+    min-width: 96px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .post-list .title {
+    flex: 1 1 300px;
+    font-weight: 500;
+  }
+
+  .post-list .tag {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .more {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    padding: 10px 0;
+  }
+
+  .prose h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 40px;
+  }
+
+  .prose p + p {
+    margin-top: 16px;
+  }
+</style>
