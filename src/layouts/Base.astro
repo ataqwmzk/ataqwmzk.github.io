@@ -284,6 +284,32 @@ const {
     margin-top: 16px;
   }
 
+  /* 表：細い線で区切り、スマホでは横にスクロールできるようにする */
+  .prose table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    margin-top: 24px;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid #d4d4d4;
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .prose th {
+    background: #f5f8ff;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
   main section > *,
   main .body > *,
   main .post-list li,
