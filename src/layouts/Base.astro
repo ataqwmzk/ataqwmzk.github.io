@@ -45,8 +45,14 @@ const {
       <div class="wrap">© ata_あた</div>
     </footer>
     <script>
-      const sections = document.querySelectorAll('main section');
-      sections.forEach((el) => el.classList.add('reveal'));
+      const targets = document.querySelectorAll(
+        'main section > :not(.body):not(.post-list):not(.buttons), main .body > *, main .post-list li, main .buttons a'
+      );
+      targets.forEach((el) => {
+        el.classList.add('reveal');
+        const index = Array.from(el.parentElement.children).indexOf(el);
+        el.style.transitionDelay = `${Math.min(index, 5) * 90}ms`;
+      });
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -56,9 +62,9 @@ const {
             }
           });
         },
-        { threshold: 0.12 }
+        { threshold: 0.1, rootMargin: '0px 0px -12% 0px' }
       );
-      sections.forEach((el) => observer.observe(el));
+      targets.forEach((el) => observer.observe(el));
     </script>
   </body>
 </html>
@@ -239,8 +245,8 @@ const {
 
   .js .reveal {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(32px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .js .reveal.is-visible {
