@@ -16,7 +16,8 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
 <Base>
   <section class="hero">
     <p class="eyebrow">PORTFOLIO &amp; BLOG</p>
-    <h1>ata_あた</h1>
+    <h1>izuna</h1>
+    <p class="subname">ata</p>
     <p class="lead">はじめまして。あたです。</p>
     <ul class="chips">
       <li>グラフィックデザイン</li>
@@ -103,6 +104,13 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
     line-height: 1.2;
     font-weight: 600;
     letter-spacing: -0.01em;
+  }
+
+  .subname {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: -12px;
   }
 
   .lead {
