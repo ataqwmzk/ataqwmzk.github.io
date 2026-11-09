@@ -44,6 +44,18 @@ const {
     <footer class="site-footer">
       <div class="wrap">© ata_あた</div>
     </footer>
+    <a href="#top" class="to-top" aria-label="ページの上へ戻る">↑</a>
+    <script>
+      const toTop = document.querySelector('.to-top');
+      const showToTop = () => toTop.classList.toggle('show', window.scrollY > 400);
+      showToTop();
+      window.addEventListener('scroll', showToTop, { passive: true });
+      toTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+      });
+    </script>
     <script>
       const targets = Array.from(
         document.querySelectorAll(
@@ -169,6 +181,42 @@ const {
 
   nav a {
     padding: 10px 0;
+  }
+
+  .to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid var(--chip);
+    color: var(--accent);
+    font-size: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .to-top:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .to-top {
+      transition: none;
+    }
   }
 
   .site-footer {
