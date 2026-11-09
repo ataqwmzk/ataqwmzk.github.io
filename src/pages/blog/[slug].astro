@@ -14,7 +14,7 @@ const isAi = post.data.author === 'ai';
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
 ---
 
-<Base title={`${post.data.title} | ata_あた`} description={post.data.summary ?? post.data.title}>
+<Base title={`${post.data.title} | izuna0032`} description={post.data.summary ?? post.data.title}>
   <article class="article">
     <p class="meta">{fmt(post.data.date)} · {post.data.tag}{isAi && ' · AI作成'}</p>
     <h1>{post.data.title}</h1>
