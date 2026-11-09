@@ -19,7 +19,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
     <p class="eyebrow">PORTFOLIO &amp; BLOG</p>
     <h1>izuna</h1>
     <p class="subname">ata</p>
-    <p class="lead">はじめまして。<br />izuna（いずな・いず）でも、あたでも、好きなように呼んでください。<br />メッセージはマシュマロかXからお願いします！</p>
+    <p class="lead">はじめまして。<br /><span class="nb">izuna（いずな・いず）でも、</span><span class="nb">あたでも、</span><span class="nb">好きなように呼んでください。</span><br /><span class="nb">メッセージはマシュマロか</span><span class="nb">Xからお願いします！</span></p>
     <ul class="chips">
       <li>グラフィックデザイン</li>
       <li>動画編集</li>
@@ -119,6 +119,10 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
     font-size: 20px;
     color: #3a3a3a;
     max-width: 560px;
+  }
+
+  .lead .nb {
+    display: inline-block;
   }
 
   .chips {
