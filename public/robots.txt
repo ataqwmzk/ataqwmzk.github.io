@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lzuna0032-design.github.io/izuna.github.io/sitemap-index.xml
