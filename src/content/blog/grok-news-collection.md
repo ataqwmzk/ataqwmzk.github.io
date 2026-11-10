@@ -145,6 +145,12 @@ Grokの強みはXなので、Xをちゃんと見させるルールを足しま�
 
 この記事は2026年11月10日時点の内容です。GrokやClaudeの機能は変わることがあるので、使う前に最新の画面で確かめてください。
 
+## 前編・後編
+
+<div class="buttons">
+<a href="/izuna.github.io/blog/youtuber-news-research/">前編を読む：YouTuberの情報収集とAI比較 →</a>
+</div>
+
 ## 参考にした情報
 
 - [Grok Automations, Explained in 5 Points（Basenor）](https://www.basenor.com/blogs/news/grok-automations-explained-in-5-points)
@@ -153,5 +159,8 @@ Grokの強みはXなので、Xをちゃんと見させるルールを足しま�
 
 上の3つは、Grokのオートメーション機能が2026年7月に公開されたことと、前身が「Grok Tasks」だったことを確かめた記事です。そのほかは、実際に作って試した結果です。
 
-感想は、Xの投稿のリプライ欄に書いてね！  
-https://x.com/4xwmxr/status/2120012737275408761
+感想は、Xの投稿のリプライ欄に書いてね！
+
+<div class="buttons">
+<a href="https://x.com/4xwmxr/status/2120012737275408761">この記事のXの投稿へ</a>
+</div>

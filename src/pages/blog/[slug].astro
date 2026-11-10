@@ -73,6 +73,26 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
     margin-top: 40px;
   }
 
+.prose :global(.buttons) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .prose :global(.buttons a) {
+    padding: 12px 22px;
+    border: 1px solid var(--chip);
+    border-radius: 999px;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .prose :global(.buttons a:hover) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
   .back {
     margin-top: 56px;
     font-size: 14px;

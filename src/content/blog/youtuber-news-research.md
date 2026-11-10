@@ -145,6 +145,12 @@ Grokが出した「確認できない話」を、検索に載っているXの投
 
 この記事は2026年11月10日時点の内容です。各AIの機能はよく変わるので、使う前に最新の情報を確かめてください。
 
+## 前編・後編
+
+<div class="buttons">
+<a href="/izuna.github.io/blog/grok-news-collection/">後編を読む：Grokでニュースを毎時あつめる仕組み →</a>
+</div>
+
 ## 参考にした情報
 
 - [ChatGPT Can Now Automate Tasks and Send Smart Alerts（SQ Magazine）](https://sqmagazine.co.uk/chatgpt-automate-tasks-send-smart-alerts.md)
@@ -157,5 +163,8 @@ Grokが出した「確認できない話」を、検索に載っているXの投
 
 AIの回答を確かめるときに使った記事です。実験の結果そのものは、実際に試したものです。
 
-感想は、Xの投稿のリプライ欄に書いてね！  
-https://x.com/4xwmxr/status/2120012479522832635
+感想は、Xの投稿のリプライ欄に書いてね！
+
+<div class="buttons">
+<a href="https://x.com/4xwmxr/status/2120012479522832635">この記事のXの投稿へ</a>
+</div>
