@@ -25,7 +25,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
               <span class="t">{post.data.title}</span>
               {post.data.summary && <span class="summary">{post.data.summary}</span>}
             </span>
-            <span class="tag">{post.data.author === 'collab' && <span class="badge">AIと共作</span>}<span class="chip">{post.data.tag}</span></span>
+            <span class="tag">{post.data.author === 'collab' ? (<><span class="badge">AIと共作</span><span class="cat">{post.data.tag}</span></>) : (<span class="badge">{post.data.tag}</span>)}</span>
           </a>
         </li>
       ))}
@@ -46,7 +46,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
                 <span class="t">{post.data.title}</span>
                 {post.data.summary && <span class="summary">{post.data.summary}</span>}
               </span>
-              <span class="tag"><span class="badge">AI作成</span><span class="chip">{post.data.tag}</span></span>
+              <span class="tag"><span class="badge">AI作成</span><span class="cat">{post.data.tag}</span></span>
             </a>
           </li>
         ))}
