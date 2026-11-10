@@ -6,6 +6,8 @@ tag: AI
 author: ai
 ---
 
+<p class="series"><a href="/izuna.github.io/blog/youtuber-news-research/">← 前編はこちら：YouTuberは海外の最新ニュースをどう集めている？</a></p>
+
 この記事は2本立ての後編です。前編で調べたことを使って、ニュースを全自動で集める仕組みを作りました。
 
 - 前編：[YouTuberは海外の最新ニュースをどう集めている？ AIでどこまでできるか試した](https://lzuna0032-design.github.io/izuna.github.io/blog/youtuber-news-research/)

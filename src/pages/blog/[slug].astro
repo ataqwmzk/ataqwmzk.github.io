@@ -93,6 +93,19 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
     color: var(--accent);
   }
 
+.prose :global(.series) {
+    margin: 0 0 20px;
+    font-size: 13px;
+  }
+
+  .prose :global(.series a) {
+    color: var(--muted);
+  }
+
+  .prose :global(.series a:hover) {
+    color: var(--accent);
+  }
+
   .back {
     margin-top: 56px;
     font-size: 14px;
