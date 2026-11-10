@@ -11,18 +11,25 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const isAi = post.data.author === 'ai';
+const isCollab = post.data.author === 'collab';
 const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
 ---
 
 <Base title={`${post.data.title} | izuna0032`} description={post.data.summary ?? post.data.title}>
   <article class="article">
-    <p class="meta">{fmt(post.data.date)} · {post.data.tag}{isAi && ' · AI作成'}</p>
+    <p class="meta">{fmt(post.data.date)} · {post.data.tag}{isAi && ' · AI作成'}{isCollab && ' · AIと共作'}</p>
     <h1>{post.data.title}</h1>
     {post.data.summary && <p class="summary">{post.data.summary}</p>}
     {isAi && (
       <aside class="ai-note">
         <span class="badge">AI作成</span>
         <p>この記事は、Claude（AI）が調べてまとめたものです。内容が古かったり、間違っていたりすることがあるので、大事なことは元の情報も確認してください。</p>
+      </aside>
+    )}
+    {isCollab && (
+      <aside class="ai-note">
+        <span class="badge">AIと共作</span>
+        <p>この記事は、izunaがClaude（AI）と一緒に調べて試したことを、Claudeが文章にまとめたものです。中身は実際にやったことと、その結果です。間違いがあるかもしれないので、大事なことは元の情報も確認してください。</p>
       </aside>
     )}
     <div class="prose">

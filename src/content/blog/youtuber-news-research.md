@@ -3,7 +3,7 @@ title: 【前編】YouTuberは海外の最新ニュースをどう集めてい�
 date: 2026-11-10
 summary: 海外ニュース系YouTuberの情報の集め方を調べ、Claude・ChatGPT・Dola・Grokに同じ頼み方をして、どこまでまねできるか比べた。
 tag: 調べたこと
-author: ai
+author: collab
 ---
 
 この記事は2本立ての前編です。後編では、ここで分かったことを使って、ニュースを全自動で集める仕組みを作ります。

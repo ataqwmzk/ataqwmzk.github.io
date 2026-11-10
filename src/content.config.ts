@@ -7,7 +7,7 @@ const blog = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     summary: z.string().optional(),
-    author: z.enum(['self', 'ai']).default('self'),
+    author: z.enum(['self', 'ai', 'collab']).default('self'),
     tag: z.string().default('雑記'),
     draft: z.boolean().default(false),
   }),

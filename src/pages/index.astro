@@ -5,7 +5,7 @@ const base = import.meta.env.BASE_URL.split('/').filter(Boolean).map((s) => '/' 
 
 const posts = (await getCollection('blog', ({ data }) => import.meta.env.DEV || !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const own = posts.filter((post) => post.data.author === 'self');
+const own = posts.filter((post) => post.data.author !== 'ai');
 const latest = own.slice(0, 3);
 const hasAi = posts.some((post) => post.data.author === 'ai');
 
@@ -64,7 +64,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10).replaceAll('-', '.');
               <span class="t">{post.data.title}</span>
               {post.data.summary && <span class="summary">{post.data.summary}</span>}
             </span>
-            <span class="tag">{post.data.tag}</span>
+            <span class="tag">{post.data.author === 'collab' && <span class="badge">AIと共作</span>}{post.data.tag}</span>
           </a>
         </li>
       ))}

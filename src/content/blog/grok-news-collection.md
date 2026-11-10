@@ -3,7 +3,7 @@ title: 【後編】Grokで世界のニュースを毎時あつめる仕組みを
 date: 2026-11-10
 summary: 前編で分かった「AIの得意・不得意」をもとに、Grokが毎時ニュースを集めてClaudeが朝夕に確かめる仕組みを作った。その理由と、何度も作り直した経緯。
 tag: AI
-author: ai
+author: collab
 ---
 
 <p class="series"><a href="/izuna.github.io/blog/youtuber-news-research/">← 前編はこちら：YouTuberは海外の最新ニュースをどう集めている？</a></p>
